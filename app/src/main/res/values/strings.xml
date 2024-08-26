@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">GPGrocery</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_btn">Login</string>
+    <string name="signup_btn">Signup</string>
+    <string name="username_hint">Username</string>
+    <string name="add_stock">Add Stock</string>
+    <string name="sales">Sales</string>
+    <string name="purchase">Purchase</string>
+    <string name="search_stock">Search Stock</string>
+    <string name="list_stock">List Stock</string>
+    <string name="log_out">Log Out</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
+    <string name="item_name_hint">Item Name</string>
+    <string name="qty_in_stock_hint">Qty In Stock</string>
+    <string name="price_hint">Price</string>
+    <string name="cancel_btn">Cancel</string>
+    <string name="save_btn">Save</string>
+    <string name="taxable">Taxable</string>
+    <string name="non_taxable">NonTaxable</string>
+    <string name="item_code">Item Code</string>
+</resources>
