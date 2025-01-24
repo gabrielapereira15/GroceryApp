@@ -1,4 +1,4 @@
-# Grocery App
+# Grocery App (In progress...)
 
 A project developed as the final assignment for the Android Development Course I. This app is designed to serve as an efficient inventory management solution for grocery stores.
 
@@ -24,7 +24,7 @@ The primary goal of the Grocery App is to streamline inventory management for gr
 
 - **Programming Language**: Java
 - **Framework**: Android SDK
-- **Database**: SQLite (or your preferred database solution)
+- **Database**: SQLite
 - **UI Design**: Material Design principles
 
 ---
@@ -39,14 +39,22 @@ The primary goal of the Grocery App is to streamline inventory management for gr
 
 ## Screenshots
 
-_Add some screenshots of your app here to give users a visual idea of its functionality._
+![Login](assets/login.png)
+![Sign Up](assets/signup.png)
+![Menu Options](assets/drawer.png)
+![Add Stock Page](assets/addStock.png)
 
 ---
 
 ## Future Enhancements
 
+- Implement the missing pages:
+    - Homepage/Dashboard;
+    - Sales Page;
+    - Purchase Page;
+    - Search Stock;
+    - List Stock;
 - Implement barcode scanning for easier product management.
-- Add user authentication for secure access.
-- Integrate analytics to provide insights into sales and inventory trends.
+- Integrate analytics to provide insights into sales and inventory trends (Dashboard).
 
 ---
