@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_greeting_morning">Good morning, %1$s</string>
+    <string name="home_greeting_afternoon">Good afternoon, %1$s</string>
+    <string name="home_greeting_evening">Good evening, %1$s</string>
+    <string name="home_open_settings">Store settings</string>
+    <string name="home_lock">Lock the till</string>
+    <string name="home_today_sales">Today\'s sales</string>
+    <string name="home_change_up">%1$s%% vs last %2$s</string>
+    <string name="home_change_down">%1$s%% vs last %2$s</string>
+    <string name="home_change_description_up">Up %1$s percent on last %2$s at this time</string>
+    <string name="home_change_description_down">Down %1$s percent on last %2$s at this time</string>
+    <plurals name="home_sales_count">
+        <item quantity="one">sale</item>
+        <item quantity="other">sales</item>
+    </plurals>
+    <plurals name="home_items_count">
+        <item quantity="one">item sold</item>
+        <item quantity="other">items sold</item>
+    </plurals>
+    <string name="home_avg_basket">avg. basket</string>
+    <string name="home_quick_add">Add product</string>
+    <string name="home_quick_scan">Scan</string>
+    <string name="home_quick_restock">Restock</string>
+    <string name="home_quick_count">Stock count</string>
+    <plurals name="home_low_title">
+        <item quantity="one">%1$d product needs restocking</item>
+        <item quantity="other">%1$d products need restocking</item>
+    </plurals>
+    <string name="home_low_names_two">%1$s and %2$s</string>
+    <plurals name="home_low_names_more">
+        <item quantity="one">%1$s, %2$s and %3$d more</item>
+        <item quantity="other">%1$s, %2$s and %3$d more</item>
+    </plurals>
+    <string name="home_low_action">Restock</string>
+    <string name="home_best_sellers">Best sellers today</string>
+    <string name="home_see_all">See all</string>
+    <string name="home_no_sales_title">No sales yet today</string>
+    <string name="home_no_sales_body">Tap Sell to ring up the first one. Best sellers show up here as the day goes.</string>
+    <string name="home_sold">%1$s sold</string>
+    <string name="home_empty_title">Your shelves are empty</string>
+    <string name="home_empty_body">Add the products you sell, with their prices and how many you have. A barcode makes selling them a single scan.</string>
+    <string name="home_empty_action">Add your first product</string>
+</resources>

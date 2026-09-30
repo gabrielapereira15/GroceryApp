@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="restock_title">Restock</string>
+    <string name="restock_supplier_change">Change</string>
+    <string name="restock_supplier_pick">Pick a supplier</string>
+    <string name="restock_delivers">Delivers %1$s</string>
+    <string name="restock_invoice">Invoice no.</string>
+    <string name="restock_received">Received</string>
+    <string name="restock_today">Today</string>
+    <string name="restock_suggested">On this delivery</string>
+    <string name="restock_suggested_note">Low items are filled in</string>
+    <string name="restock_state_out">Out of stock</string>
+    <string name="restock_state_low">%1$s left · alert below %2$s</string>
+    <string name="restock_state_ok">%1$s in stock</string>
+    <string name="restock_unit_cost">Unit cost</string>
+    <string name="restock_fewer">Fewer %1$s</string>
+    <string name="restock_more">More %1$s</string>
+    <string name="restock_remove">Take %1$s off the delivery</string>
+    <string name="restock_add_product">Add a product</string>
+    <string name="restock_add_title">Add to the delivery</string>
+    <string name="restock_add_from_supplier">From %1$s</string>
+    <string name="restock_add_everything_else">Everything else</string>
+    <plurals name="restock_products">
+        <item quantity="one">%1$d product</item>
+        <item quantity="other">%1$d products</item>
+    </plurals>
+    <string name="restock_receive">Receive stock</string>
+    <string name="restock_nothing">Nothing on this delivery yet. Add a product to receive it.</string>
+    <string name="restock_no_suppliers_title">No suppliers yet</string>
+    <string name="restock_no_suppliers_body">Add the wholesalers and farms you buy from, then receive their deliveries here.</string>
+    <string name="restock_add_supplier">Add a supplier</string>
+    <string name="restock_supplier_name">Supplier name</string>
+    <string name="restock_supplier_days">Delivery days (optional)</string>
+    <string name="restock_supplier_days_hint">Tue and Fri</string>
+    <string name="restock_received_message">Stock received from %1$s</string>
+
+    <string name="delivery_title">Delivery</string>
+    <string name="delivery_invoice">Invoice %1$s</string>
+    <string name="delivery_total">Total cost</string>
+    <string name="delivery_missing">This delivery could not be found.</string>
+</resources>

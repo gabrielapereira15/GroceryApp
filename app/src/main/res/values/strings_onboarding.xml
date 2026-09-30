@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome_headline">Run your store from your pocket.</string>
+    <string name="welcome_body">Stock, sales and restocks in one place, made for small grocers. Everything stays on this phone and works offline.</string>
+    <string name="welcome_set_up">Set up my store</string>
+    <string name="welcome_explore">Explore a sample store</string>
+    <string name="welcome_explore_note">A corner store with five weeks of sales. Its PIN is 1234.</string>
+
+    <string name="setup_title">Set up your store</string>
+    <string name="setup_intro">A few details, and a PIN to lock the till when you step away.</string>
+    <string name="setup_store_name">Store name</string>
+    <string name="setup_store_name_hint">Maple Street Market</string>
+    <string name="setup_owner_name">Your name</string>
+    <string name="setup_pin">Choose a 4-digit PIN</string>
+    <string name="setup_pin_confirm">Type it again</string>
+    <string name="setup_pin_note">The PIN stays on this phone. There is no account to recover it from, so pick one you will remember.</string>
+    <string name="setup_open">Open my store</string>
+    <string name="setup_error_store">Give the store a name</string>
+    <string name="setup_error_owner">Add your name</string>
+    <string name="setup_error_pin">Use exactly 4 digits</string>
+    <string name="setup_error_confirm">The two PINs are different</string>
+
+    <string name="unlock_welcome_back">Welcome back, %1$s</string>
+    <string name="unlock_enter_pin">Enter your PIN</string>
+    <string name="unlock_dots">%1$d of 4 digits entered</string>
+    <plurals name="unlock_wrong">
+        <item quantity="one">Wrong PIN. %1$d try left before a short pause.</item>
+        <item quantity="other">Wrong PIN. %1$d tries left before a short pause.</item>
+    </plurals>
+    <string name="unlock_paused">Too many tries. Try again in %1$d s.</string>
+    <string name="unlock_sample_hint">Sample store PIN: 1234</string>
+    <string name="unlock_fingerprint">Unlock with fingerprint</string>
+    <string name="unlock_delete_digit">Delete last digit</string>
+    <string name="unlock_forgot">Forgot your PIN?</string>
+    <string name="unlock_forgot_title">Start over?</string>
+    <string name="unlock_forgot_body">Your store lives only on this phone, so a forgotten PIN cannot be reset. Starting over erases the products, sales and restocks here.</string>
+    <string name="unlock_forgot_confirm">Erase and start over</string>
+    <string name="unlock_prompt_title">Unlock %1$s</string>
+    <string name="unlock_prompt_use_pin">Use PIN</string>
+</resources>

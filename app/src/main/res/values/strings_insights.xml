@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="insights_title">Insights</string>
+    <string name="insights_week">7 days</string>
+    <string name="insights_month">30 days</string>
+    <string name="insights_year">12 months</string>
+    <string name="insights_revenue">Revenue before tax</string>
+    <string name="insights_change_up">+%1$s%%</string>
+    <string name="insights_change_down">−%1$s%%</string>
+    <string name="insights_vs_week">vs the 7 days before</string>
+    <string name="insights_vs_month">vs the 30 days before</string>
+    <string name="insights_vs_year">vs the 12 months before</string>
+    <string name="insights_chart">Revenue per bar: %1$s</string>
+    <string name="insights_margin">Gross margin</string>
+    <string name="insights_items">Items sold</string>
+    <plurals name="insights_sales">
+        <item quantity="one">%1$d sale</item>
+        <item quantity="other">%1$d sales</item>
+    </plurals>
+    <string name="insights_by_category">Sales by aisle</string>
+    <string name="insights_top_products">Top products</string>
+    <string name="insights_share">%1$s%%</string>
+    <string name="insights_empty_title">No sales in this period</string>
+    <string name="insights_empty_body">Once sales come in, this is where you see how the store is doing.</string>
+</resources>

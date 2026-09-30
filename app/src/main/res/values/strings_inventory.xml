@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="inventory_title">Inventory</string>
+    <plurals name="inventory_summary">
+        <item quantity="one">%1$d product · %2$s at cost</item>
+        <item quantity="other">%1$d products · %2$s at cost</item>
+    </plurals>
+    <string name="inventory_add">Add product</string>
+    <string name="inventory_search">Search name or barcode</string>
+    <string name="inventory_filter_all">All %1$d</string>
+    <string name="inventory_filter_low">Low stock %1$d</string>
+    <string name="inventory_filter_out">Out %1$d</string>
+    <string name="inventory_adjust">Count stock</string>
+    <string name="inventory_swipe_action">Count</string>
+    <string name="inventory_no_match_title">Nothing matches</string>
+    <string name="inventory_no_match_body">Try another name, or clear the filter to see every product.</string>
+    <string name="inventory_empty_title">No products yet</string>
+    <string name="inventory_empty_body">Add what you sell, with its price and how many are on the shelf.</string>
+    <string name="inventory_not_found_title">New barcode</string>
+    <string name="inventory_not_found_body">Nothing in the store has the barcode %1$s. Add it as a new product?</string>
+    <string name="inventory_not_found_add">Add product</string>
+
+    <string name="count_title">Count %1$s</string>
+    <string name="count_body">How many are on the shelf right now? The count replaces what Crate had.</string>
+    <string name="count_field">On the shelf</string>
+    <string name="count_less">One less</string>
+    <string name="count_more">One more</string>
+    <string name="count_save">Save count</string>
+    <string name="count_saved">Stock updated for %1$s</string>
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_title">Activity</string>
+    <string name="activity_subtitle">The last 30 days</string>
+    <string name="activity_all">All</string>
+    <string name="activity_sales">Sales</string>
+    <string name="activity_restocks">Restocks</string>
+    <string name="activity_sales_today">Sales today</string>
+    <string name="activity_restocked_today">Restocked today</string>
+    <string name="activity_sale">Sale #%1$d</string>
+    <plurals name="activity_sale_meta">
+        <item quantity="one">%1$d item · %2$s · %3$s</item>
+        <item quantity="other">%1$d items · %2$s · %3$s</item>
+    </plurals>
+    <plurals name="activity_restock_meta">
+        <item quantity="one">Restock · %1$d product · %2$s</item>
+        <item quantity="other">Restock · %1$d products · %2$s</item>
+    </plurals>
+    <string name="activity_empty_title">Nothing here yet</string>
+    <string name="activity_empty_body">Sales and deliveries from the last 30 days show up here, newest first.</string>
+</resources>

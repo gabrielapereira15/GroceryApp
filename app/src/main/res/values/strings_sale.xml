@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sale_title">New sale</string>
+    <string name="sale_close">Close the sale</string>
+    <string name="sale_discard_title">Discard this sale?</string>
+    <string name="sale_discard_body">The products in it are taken off and nothing is charged.</string>
+    <string name="sale_discard">Discard</string>
+    <string name="sale_keep">Keep selling</string>
+    <string name="sale_search">Search or scan to add</string>
+    <string name="sale_frequent">Frequent</string>
+    <string name="sale_no_results">Nothing in the store matches “%1$s”.</string>
+    <string name="sale_add_product">Add %1$s</string>
+    <string name="sale_in_cart">%1$s in the sale</string>
+    <string name="sale_current">Current sale</string>
+    <plurals name="sale_item_count">
+        <item quantity="one">%1$d item</item>
+        <item quantity="other">%1$d items</item>
+    </plurals>
+    <string name="sale_clear">Clear</string>
+    <string name="sale_empty_hint">Tap a product, or scan it, to add it to the sale.</string>
+    <string name="sale_each">%1$s each</string>
+    <string name="sale_weighed_line">%1$s × %2$s</string>
+    <string name="sale_one_less">One less %1$s</string>
+    <string name="sale_one_more">One more %1$s</string>
+    <string name="sale_remove">Remove %1$s</string>
+    <string name="sale_subtotal">Subtotal</string>
+    <string name="sale_tax">HST %1$s%%</string>
+    <string name="sale_total">Total</string>
+    <string name="sale_cash_given">Cash received</string>
+    <string name="sale_change_due">Change due: %1$s</string>
+    <string name="sale_cash_short">%1$s still to pay</string>
+    <string name="sale_charge">Charge %1$s</string>
+    <string name="sale_added">%1$s added</string>
+    <string name="sale_weigh_title">How much %1$s?</string>
+    <string name="sale_weigh_field">Weight</string>
+    <string name="sale_weigh_add">Add to sale</string>
+
+    <string name="receipt_complete">Sale complete</string>
+    <string name="receipt_paid_card">%1$s paid by card</string>
+    <string name="receipt_paid_cash">%1$s paid in cash · change %2$s</string>
+    <string name="receipt_number">Sale #%1$d · %2$s</string>
+    <string name="receipt_title">Sale #%1$d</string>
+    <string name="receipt_taxed_mark">H</string>
+    <string name="receipt_taxed_note">H = HST applied</string>
+    <string name="receipt_payment">Paid by</string>
+    <string name="receipt_cash_given">Cash received</string>
+    <string name="receipt_change">Change</string>
+    <string name="receipt_low">%1$s is down to %2$s</string>
+    <string name="receipt_out">%1$s is now out of stock</string>
+    <string name="receipt_add_restock">Restock</string>
+    <string name="receipt_share">Receipt</string>
+    <string name="receipt_share_title">Share the receipt</string>
+    <string name="receipt_new_sale">New sale</string>
+    <string name="receipt_done">Done</string>
+    <string name="receipt_thanks">Thank you for shopping local!</string>
+    <string name="receipt_missing">This sale could not be found.</string>
+</resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">Store</string>
+    <string name="settings_store">Store details</string>
+    <string name="settings_store_name">Store name</string>
+    <string name="settings_owner">Your name</string>
+    <string name="settings_tax">Sales tax rate</string>
+    <string name="settings_tax_help">Ontario HST is 13%. Applied to products marked as taxable.</string>
+    <string name="settings_tax_error">Enter a rate between 0 and 25</string>
+    <string name="settings_save">Save details</string>
+    <string name="settings_saved">Store details saved</string>
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_theme_system">System</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_security">Security</string>
+    <string name="settings_fingerprint">Unlock with fingerprint</string>
+    <string name="settings_fingerprint_body">Instead of typing the PIN on this phone</string>
+    <string name="settings_fingerprint_unavailable">This phone has no fingerprint or face unlock set up</string>
+    <string name="settings_change_pin">Change PIN</string>
+    <string name="settings_change_pin_body">Four digits, asked for when Crate opens</string>
+    <string name="settings_new_pin">New PIN</string>
+    <string name="settings_confirm_pin">Type it again</string>
+    <string name="settings_pin_changed">PIN changed</string>
+    <string name="settings_lock_now">Lock now</string>
+    <string name="settings_lock_now_body">Crate also locks itself after five minutes away</string>
+    <string name="settings_data">Data</string>
+    <string name="settings_export_sales">Export sales</string>
+    <string name="settings_export_sales_body">The last 30 days, one line per product sold, as CSV</string>
+    <string name="settings_export_products">Export products</string>
+    <string name="settings_export_products_body">Prices, costs and stock, as CSV</string>
+    <string name="settings_export_share">Share the export</string>
+    <string name="settings_reload_sample">Reload the sample store</string>
+    <string name="settings_reload_sample_body">Back to Maple Street Market as it was, with today\'s dates</string>
+    <string name="settings_reload_confirm_title">Reload the sample store?</string>
+    <string name="settings_reload_confirm_body">Sales, deliveries and changes you made to the sample store are replaced.</string>
+    <string name="settings_reload_confirm">Reload</string>
+    <string name="settings_reloaded">Sample store reloaded</string>
+    <string name="settings_erase">Erase everything</string>
+    <string name="settings_erase_body">Removes the store from this phone and starts over</string>
+    <string name="settings_erase_confirm_title">Erase everything?</string>
+    <string name="settings_erase_confirm_body">Products, sales, deliveries and the PIN are deleted from this phone. This cannot be undone.</string>
+    <string name="settings_erase_confirm">Erase</string>
+    <string name="settings_about">About</string>
+    <string name="settings_version">Crate %1$s</string>
+    <string name="settings_fonts">Type: Bricolage Grotesque and Figtree, under the SIL Open Font License 1.1.</string>
+</resources>
