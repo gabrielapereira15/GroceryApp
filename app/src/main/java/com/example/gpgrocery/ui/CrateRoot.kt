@@ -1,6 +1,7 @@
 package com.example.gpgrocery.ui
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.ui.platform.LocalContext
@@ -27,7 +28,11 @@ fun CrateRoot(container: AppContainer, settings: StoreSettings) {
     val unlocked by container.session.unlocked.collectAsStateWithLifecycle()
     val saved = rememberSaveableStateHolder()
     when {
-        !settings.setupComplete -> OnboardingFlow()
+        !settings.setupComplete -> {
+            // A store set up after an erase starts on Home, not where the old one was left.
+            LaunchedEffect(Unit) { saved.removeState("store") }
+            OnboardingFlow()
+        }
         settings.hasPin && !unlocked -> UnlockScreen(settings)
         else -> saved.SaveableStateProvider("store") { CrateNavHost(settings) }
     }

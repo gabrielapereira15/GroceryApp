@@ -80,19 +80,35 @@ class OnboardingViewModel(private val container: AppContainer) : ViewModel() {
         form = form.change()
     }
 
+    // This ViewModel outlives the store: erasing it brings these screens back with the same instance,
+    // so each attempt clears up after itself, the PIN included.
     fun exploreSample() {
         if (openingSample || openingStore) return
         openingSample = true
-        viewModelScope.launch { container.openSampleStore() }
+        viewModelScope.launch {
+            try {
+                container.openSampleStore()
+            } finally {
+                openingSample = false
+            }
+        }
     }
 
     fun openStore() {
+        if (openingSample || openingStore) return
         if (!form.isValid) {
             form = form.copy(showErrors = true)
             return
         }
         openingStore = true
-        viewModelScope.launch { container.openNewStore(form.storeName, form.ownerName, form.pin) }
+        viewModelScope.launch {
+            try {
+                container.openNewStore(form.storeName, form.ownerName, form.pin)
+                form = SetupForm()
+            } finally {
+                openingStore = false
+            }
+        }
     }
 }
 

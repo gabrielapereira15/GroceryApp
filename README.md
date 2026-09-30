@@ -212,7 +212,7 @@ app/src/main/java/com/example/gpgrocery/
 ./gradlew testDebugUnitTest
 ```
 
-50 unit tests cover:
+58 unit tests cover:
 
 - money parsing and formatting, weighed quantities, line totals and HST
   rounding, including the $28.33 receipt from the design mockups
@@ -222,6 +222,8 @@ app/src/main/java/com/example/gpgrocery/
 - the automatic lock after five minutes away
 - the insights windows, the daily and monthly bars, and how aisles and
   products are ranked
+- the product form: what a blank field means, and what is not a valid price
+  or quantity
 - barcode clean-up and check digits, and CSV quoting
 
 ## Known gaps

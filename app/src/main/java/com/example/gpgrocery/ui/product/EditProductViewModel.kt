@@ -29,8 +29,9 @@ data class ProductForm(
     val price: String = "",
     val cost: String = "",
     val taxable: Boolean = false,
-    val stock: String = "0",
-    val alertBelow: String = "5",
+    // Blank rather than prefilled, so typing a number does not end up after a default ("54" for 4).
+    val stock: String = "",
+    val alertBelow: String = "",
     val supplierId: Long? = null,
     val photoPath: String? = null,
     val showErrors: Boolean = false,
@@ -40,7 +41,7 @@ data class ProductForm(
     val priceCents: Long? get() = Money.parse(price)
     val costCents: Long? get() = if (cost.isBlank()) 0 else Money.parse(cost)
     val stockMilli: Long? get() = Quantity.parse(stock.ifBlank { "0" }, soldBy)
-    val alertMilli: Long? get() = Quantity.parse(alertBelow.ifBlank { "0" }, soldBy)
+    val alertMilli: Long? get() = Quantity.parse(alertBelow.ifBlank { DEFAULT_ALERT }, soldBy)
 
     val nameMissing get() = name.isBlank()
     val priceInvalid get() = priceCents == null || priceCents == 0L
@@ -53,6 +54,11 @@ data class ProductForm(
         val price = priceCents ?: return null
         val cost = costCents ?: return null
         return if (price > 0 && cost > 0) Pricing.marginPercent(price, cost) else null
+    }
+
+    companion object {
+        /** Shown as the placeholder, and used when the field is left blank. */
+        const val DEFAULT_ALERT = "5"
     }
 }
 
