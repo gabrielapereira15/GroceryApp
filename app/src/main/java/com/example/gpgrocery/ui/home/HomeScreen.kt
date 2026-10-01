@@ -30,7 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalLocale
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -61,7 +61,6 @@ import com.example.gpgrocery.ui.theme.Crate
 import com.example.gpgrocery.ui.theme.CrateIcons
 import java.time.LocalTime
 import java.time.format.TextStyle
-import java.util.Locale
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
@@ -194,7 +193,7 @@ private fun initials(name: String): String =
 @Composable
 private fun SalesHero(state: HomeState) {
     val colors = Crate.colors
-    val dayName = state.comparedDay.getDisplayName(TextStyle.SHORT, LocalConfiguration.current.locales[0] ?: Locale.getDefault())
+    val dayName = state.comparedDay.getDisplayName(TextStyle.SHORT, LocalLocale.current.platformLocale)
     Column(
         Modifier
             .fillMaxWidth()

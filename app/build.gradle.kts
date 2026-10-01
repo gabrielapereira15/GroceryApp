@@ -1,6 +1,8 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
+    // From AGP 9 Kotlin is built into the Android plugin, so there is no kotlin-android plugin to apply.
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
@@ -9,14 +11,14 @@ plugins {
 android {
     // The package stays what it was when this began as a course project.
     namespace = "com.example.gpgrocery"
-    compileSdk = 35
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.example.gpgrocery"
         minSdk = 29
-        targetSdk = 35
-        versionCode = 2
-        versionName = "2.0"
+        targetSdk = 37
+        versionCode = 3
+        versionName = "2.1"
     }
 
     buildTypes {
@@ -30,14 +32,17 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
     buildFeatures {
         compose = true
     }
     testOptions {
         unitTests.isReturnDefaultValues = true
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_17
     }
 }
 

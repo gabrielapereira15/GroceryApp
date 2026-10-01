@@ -129,7 +129,8 @@ screen straight away.
 
 ## Tech stack
 
-- **Kotlin 2.0** and **Jetpack Compose** with Material 3
+- **Kotlin 2.4** and **Jetpack Compose** with Material 3
+- Built with the **Android Gradle Plugin 9** and **Gradle 9**
 - **Navigation Compose** with type-safe routes
 - **ViewModel** and **StateFlow**, collected with lifecycle awareness
 - **Room** (with KSP) for the store, **DataStore** for settings and the PIN hash
@@ -142,8 +143,9 @@ screen straight away.
 
 ## Run it
 
-You need Android Studio Ladybug (2024.2) or newer, or JDK 17 or newer with the
-Android SDK 35. The app runs on Android 10 (API 29) and up.
+You need an Android Studio recent enough for the Android Gradle Plugin 9.4, or JDK
+17 or newer with the Android SDK 37. The app runs on Android 10 (API 29) and up,
+and targets Android 17 (API 37).
 
 ```bash
 git clone https://github.com/gabrielapereira15/GroceryApp.git

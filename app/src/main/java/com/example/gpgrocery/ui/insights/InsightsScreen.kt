@@ -27,7 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalLocale
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
@@ -71,7 +71,6 @@ import java.math.RoundingMode
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
-import java.util.Locale
 import kotlin.math.abs
 
 data class InsightsState(
@@ -200,7 +199,7 @@ fun InsightsScreen(onOpenProduct: (Long) -> Unit) {
 @Composable
 private fun RevenueCard(period: Period, today: LocalDate, summary: InsightsSummary) {
     val colors = Crate.colors
-    val locale = LocalConfiguration.current.locales[0] ?: Locale.getDefault()
+    val locale = LocalLocale.current.platformLocale
     val bars = summary.buckets.map { bucket ->
         val label = when (period) {
             Period.WEEK -> bucket.start.dayOfWeek.getDisplayName(TextStyle.SHORT, locale)

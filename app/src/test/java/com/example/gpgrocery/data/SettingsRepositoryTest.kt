@@ -1,6 +1,8 @@
 package com.example.gpgrocery.data
 
+import androidx.datastore.core.okio.OkioStorage
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
+import androidx.datastore.preferences.core.PreferencesSerializer
 import com.example.gpgrocery.data.model.ThemeMode
 import com.example.gpgrocery.data.settings.PinCheck
 import com.example.gpgrocery.data.settings.SettingsRepository
@@ -9,6 +11,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.runBlocking
+import okio.FileSystem
+import okio.Path.Companion.toPath
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -31,7 +35,14 @@ class SettingsRepositoryTest {
     @Before
     fun setUp() {
         scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-        val store = PreferenceDataStoreFactory.create(scope = scope) { File(folder.root, "store.preferences_pb") }
+        // Okio storage: DataStore's plain File storage cannot replace its file on Windows, where these
+        // tests also run.
+        val storage = OkioStorage(
+            fileSystem = FileSystem.SYSTEM,
+            serializer = PreferencesSerializer,
+            producePath = { File(folder.root, "store.preferences_pb").absolutePath.toPath() },
+        )
+        val store = PreferenceDataStoreFactory.create(storage = storage, scope = scope)
         settings = SettingsRepository(store) { now }
     }
 

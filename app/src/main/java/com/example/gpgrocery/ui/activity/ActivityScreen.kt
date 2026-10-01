@@ -24,7 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalLocale
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -58,7 +58,6 @@ import java.time.LocalDate
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
-import java.util.Locale
 
 enum class ActivityFilter { ALL, SALES, RESTOCKS }
 
@@ -242,7 +241,7 @@ private fun ActivityRow(
 
 @Composable
 fun dayLabel(date: LocalDate, today: LocalDate): String {
-    val locale = LocalConfiguration.current.locales[0] ?: Locale.getDefault()
+    val locale = LocalLocale.current.platformLocale
     return when (date) {
         today -> stringResource(R.string.day_today)
         today.minusDays(1) -> stringResource(R.string.day_yesterday)
@@ -252,7 +251,7 @@ fun dayLabel(date: LocalDate, today: LocalDate): String {
 
 @Composable
 fun timeLabel(millis: Long): String {
-    val locale = LocalConfiguration.current.locales[0] ?: Locale.getDefault()
+    val locale = LocalLocale.current.platformLocale
     return Instant.ofEpochMilli(millis).atZone(ZoneId.systemDefault()).toLocalTime()
         .format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(locale))
 }

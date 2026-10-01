@@ -17,7 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalLocale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
@@ -44,7 +44,6 @@ import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
-import java.util.Locale
 
 class DeliveryViewModel(container: AppContainer, restockId: Long) : ViewModel() {
     val delivery: StateFlow<Pair<Boolean, RestockWithLines?>> = container.restocks.restock(restockId)
@@ -59,7 +58,7 @@ fun DeliveryScreen(restockId: Long, onBack: () -> Unit) {
     val loaded by viewModel.delivery.collectAsStateWithLifecycle()
     val (ready, delivery) = loaded
     val colors = Crate.colors
-    val locale = LocalConfiguration.current.locales[0] ?: Locale.getDefault()
+    val locale = LocalLocale.current.platformLocale
 
     Column(
         Modifier

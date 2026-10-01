@@ -30,7 +30,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalLocale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
@@ -72,7 +72,6 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.time.format.TextStyle
-import java.util.Locale
 
 @Composable
 fun ProductScreen(
@@ -334,7 +333,7 @@ private fun StockGauge(product: ProductEntity) {
 private fun SoldCard(state: ProductState) {
     val colors = Crate.colors
     val product = state.product ?: return
-    val locale = LocalConfiguration.current.locales[0] ?: Locale.getDefault()
+    val locale = LocalLocale.current.platformLocale
     val bars = state.lastWeek.map {
         Bar(label = it.date.dayOfWeek.getDisplayName(TextStyle.SHORT, locale), value = it.quantityMilli)
     }
@@ -359,7 +358,7 @@ private fun oneDecimal(value: Double): String = BigDecimal.valueOf(value).setSca
 
 @Composable
 private fun shortDate(millis: Long): String {
-    val locale = LocalConfiguration.current.locales[0] ?: Locale.getDefault()
+    val locale = LocalLocale.current.platformLocale
     val date = Instant.ofEpochMilli(millis).atZone(java.time.ZoneId.systemDefault()).toLocalDate()
     return date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(locale))
 }

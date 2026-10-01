@@ -38,7 +38,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.CustomAccessibilityAction
@@ -76,7 +76,7 @@ fun InventoryScreen(onOpenProduct: (Long) -> Unit, onAddProduct: (barcode: Strin
     val viewModel = crateViewModel { InventoryViewModel(it) }
     val snackbar = LocalSnackbar.current
     val scope = rememberCoroutineScope()
-    val context = LocalContext.current
+    val resources = LocalResources.current
     val state by viewModel.state.collectAsStateWithLifecycle()
     val colors = Crate.colors
     var counting by remember { mutableStateOf<ProductEntity?>(null) }
@@ -161,7 +161,7 @@ fun InventoryScreen(onOpenProduct: (Long) -> Unit, onAddProduct: (barcode: Strin
             onDismiss = { counting = null },
             onSave = { counted ->
                 viewModel.saveCount(product, counted) {
-                    scope.launch { snackbar.showSnackbar(context.getString(R.string.count_saved, product.name)) }
+                    scope.launch { snackbar.showSnackbar(resources.getString(R.string.count_saved, product.name)) }
                 }
                 counting = null
             },
@@ -229,18 +229,17 @@ private fun ProductRow(
 ) {
     val colors = Crate.colors
     // Swiping a row opens the count sheet and springs back; nothing is ever dismissed.
-    val swipe = rememberSwipeToDismissBoxState(
-        confirmValueChange = { value ->
-            if (value == SwipeToDismissBoxValue.EndToStart) onCount()
-            false
-        },
-        positionalThreshold = { it * 0.3f },
-    )
+    val swipe = rememberSwipeToDismissBoxState(positionalThreshold = { it * 0.3f })
+    val scope = rememberCoroutineScope()
     val countLabel = stringResource(R.string.inventory_adjust)
     CrateCard(modifier = modifier, shape = shape as? RoundedCornerShape ?: RoundedCornerShape(0.dp), borderColor = colors.surface) {
         SwipeToDismissBox(
             state = swipe,
             enableDismissFromStartToEnd = false,
+            onDismiss = { direction ->
+                if (direction == SwipeToDismissBoxValue.EndToStart) onCount()
+                scope.launch { swipe.reset() }
+            },
             backgroundContent = {
                 Box(
                     Modifier

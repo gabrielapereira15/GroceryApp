@@ -1,21 +1,21 @@
 [versions]
-agp = "8.7.3"
-kotlin = "2.0.21"
-ksp = "2.0.21-1.0.28"
-coreKtx = "1.15.0"
-activityCompose = "1.9.3"
-fragment = "1.8.5"
-composeBom = "2024.12.01"
-lifecycle = "2.8.7"
-navigation = "2.8.5"
-room = "2.6.1"
-datastore = "1.1.1"
-coroutines = "1.9.0"
-serialization = "1.7.3"
+agp = "9.4.1"
+kotlin = "2.4.20"
+ksp = "2.3.12"
+coreKtx = "1.19.1"
+activityCompose = "1.13.0"
+fragment = "1.9.1"
+composeBom = "2026.09.00"
+lifecycle = "2.11.0"
+navigation = "2.10.2"
+room = "2.8.5"
+datastore = "1.2.1"
+coroutines = "1.11.0"
+serialization = "1.11.0"
 biometric = "1.1.0"
 codeScanner = "16.1.0"
-coil = "2.7.0"
-splashscreen = "1.0.1"
+coil = "3.6.3"
+splashscreen = "1.2.0"
 junit = "4.13.2"
 
 [libraries]
@@ -40,7 +40,7 @@ androidx-biometric = { group = "androidx.biometric", name = "biometric", version
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
 play-services-code-scanner = { group = "com.google.android.gms", name = "play-services-code-scanner", version.ref = "codeScanner" }
-coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 
 [plugins]
