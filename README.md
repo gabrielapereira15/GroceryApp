@@ -247,3 +247,7 @@ rebuilt as a portfolio piece.
 
 Typefaces: Bricolage Grotesque and Figtree, both under the SIL Open Font
 License 1.1 (see `app/licenses/`).
+
+## Licence
+
+[MIT](LICENSE) © Gabriela Nascimento Oliveira Pereira
