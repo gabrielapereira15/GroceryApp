@@ -134,8 +134,9 @@ screen straight away.
 - **Navigation Compose** with type-safe routes
 - **ViewModel** and **StateFlow**, collected with lifecycle awareness
 - **Room** (with KSP) for the store, **DataStore** for settings and the PIN hash
-- **Biometric** prompt, **ML Kit code scanner** (Google Play services), the
-  system photo picker and **FileProvider** for sharing
+- **CameraX** with **ML Kit** reading barcodes on the phone, so scanning works
+  offline
+- **Biometric** prompt, the system photo picker and **FileProvider** for sharing
 - **Coil** for product photos and **Core SplashScreen**
 - **JUnit 4** tests on the JVM
 - **GitHub Actions** runs the unit tests and lint and builds a debug APK on
@@ -159,8 +160,8 @@ On the welcome screen, **Explore a sample store** opens Maple Street Market,
 a corner store with 40 products and five weeks of sales. Its PIN is `1234`.
 **Set up my store** starts an empty store of your own.
 
-Barcode scanning uses Google's code scanner from Play services, so on an
-emulator pick a system image with Google Play.
+Scanning reads barcodes on the phone with the camera, so it needs no network and
+no Google Play services. On an emulator, point the virtual camera at a barcode.
 
 ### Commands
 

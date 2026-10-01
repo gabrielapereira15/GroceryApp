@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Only for scanning barcodes, asked for the first time the scanner opens. -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera.any" android:required="false" />
+
+    <!-- ML Kit's libraries ask for the internet to send Google usage statistics. Crate keeps everything on
+         the phone, so it goes without: scanning works offline. -->
+    <uses-permission android:name="android.permission.INTERNET" tools:node="remove" />
 
     <!-- No backup or transfer: the store's data and PIN stay on this phone, as the welcome screen says. -->
     <application
@@ -32,11 +41,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
-        <!-- The barcode scanner module is downloaded by Play services when the app installs. -->
-        <meta-data
-            android:name="com.google.mlkit.vision.DEPENDENCIES"
-            android:value="barcode_ui" />
     </application>
 
 </manifest>

@@ -76,6 +76,7 @@ object CrateIcons {
     val Lock by icon("M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z", "M7 11V7a5 5 0 0 1 10 0v4")
     val Moon by icon("M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z")
     val Sun by icon(circle(12f, 12f, 4f), "M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4")
+    val Flash by icon("M13 2 3 14h9l-1 8 10-12h-9l1-8z")
     val Contrast by icon(circle(12f, 12f, 9f), "M12 3v18a9 9 0 0 0 0-18z")
     val Download by icon("M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", "m7 10 5 5 5-5", "M12 15V3")
     val Store by icon("M3 9 4.5 4h15L21 9", "M3 9h18v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0z", "M5 13v8h14v-8", "M10 21v-5h4v5")

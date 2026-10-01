@@ -4,8 +4,10 @@ import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -30,7 +32,10 @@ import androidx.navigation.toRoute
 import com.example.gpgrocery.data.settings.StoreSettings
 import com.example.gpgrocery.ui.activity.ActivityScreen
 import com.example.gpgrocery.ui.activity.DeliveryScreen
+import com.example.gpgrocery.ui.components.BarcodeScannerHost
+import com.example.gpgrocery.ui.components.BarcodeScannerState
 import com.example.gpgrocery.ui.components.CrateBottomBar
+import com.example.gpgrocery.ui.components.LocalBarcodeScanner
 import com.example.gpgrocery.ui.components.LocalSnackbar
 import com.example.gpgrocery.ui.components.Tab
 import com.example.gpgrocery.ui.home.HomeScreen
@@ -62,6 +67,7 @@ import kotlinx.serialization.Serializable
 fun CrateNavHost(settings: StoreSettings) {
     val nav = rememberNavController()
     val snackbar = remember { SnackbarHostState() }
+    val scanner = remember { BarcodeScannerState() }
     val entry by nav.currentBackStackEntryAsState()
     val destination = entry?.destination
     val tab = when {
@@ -73,130 +79,134 @@ fun CrateNavHost(settings: StoreSettings) {
         else -> null
     }
 
-    CompositionLocalProvider(LocalSnackbar provides snackbar) {
-        Scaffold(
-            containerColor = Crate.colors.background,
-            contentWindowInsets = WindowInsets(0, 0, 0, 0),
-            snackbarHost = {
-                SnackbarHost(snackbar, modifier = if (tab == null) Modifier.navigationBarsPadding() else Modifier) {
-                    Snackbar(
-                        it,
-                        shape = RoundedCornerShape(16.dp),
-                        containerColor = Crate.colors.ink,
-                        contentColor = Crate.colors.background,
-                        actionColor = Crate.colors.heroLine,
-                    )
-                }
-            },
-            bottomBar = {
-                if (tab != null) {
-                    CrateBottomBar(
-                        current = tab,
-                        onSelect = { nav.navigateToTab(it) },
-                        onSell = { nav.navigate(NewSaleRoute()) },
-                    )
-                }
-            },
-        ) { padding ->
-            NavHost(
-                navController = nav,
-                startDestination = HomeRoute,
-                modifier = Modifier
-                    .padding(padding)
-                    .consumeWindowInsets(padding),
-                enterTransition = { enter() },
-                exitTransition = { fadeOut(tween(140)) },
-                popEnterTransition = { fadeIn(tween(200)) },
-                popExitTransition = { popExit() },
-            ) {
-                composable<HomeRoute> {
-                    HomeScreen(
-                        settings = settings,
-                        onOpenProduct = { nav.navigate(ProductRoute(it)) },
-                        onAddProduct = { nav.navigate(EditProductRoute()) },
-                        onNewSale = { nav.navigate(NewSaleRoute()) },
-                        onRestock = { nav.navigate(RestockRoute()) },
-                        onStockCount = { nav.navigateToTab(Tab.INVENTORY) },
-                        onInsights = { nav.navigateToTab(Tab.INSIGHTS) },
-                        onSettings = { nav.navigate(SettingsRoute) },
-                        onScanned = { productId, barcode ->
-                            if (productId != null) nav.navigate(ProductRoute(productId))
-                            else nav.navigate(EditProductRoute(barcode = barcode))
-                        },
-                    )
-                }
-                composable<InventoryRoute> {
-                    InventoryScreen(
-                        onOpenProduct = { nav.navigate(ProductRoute(it)) },
-                        onAddProduct = { barcode -> nav.navigate(EditProductRoute(barcode = barcode)) },
-                    )
-                }
-                composable<ActivityRoute> {
-                    ActivityScreen(
-                        onOpenSale = { nav.navigate(ReceiptRoute(it)) },
-                        onOpenDelivery = { nav.navigate(DeliveryRoute(it)) },
-                    )
-                }
-                composable<InsightsRoute> {
-                    InsightsScreen(onOpenProduct = { nav.navigate(ProductRoute(it)) })
-                }
-                composable<ProductRoute> {
-                    val route = it.toRoute<ProductRoute>()
-                    ProductScreen(
-                        productId = route.id,
-                        onBack = { nav.popBackStack() },
-                        onEdit = { nav.navigate(EditProductRoute(id = route.id)) },
-                        onRestock = { supplierId -> nav.navigate(RestockRoute(supplierId = supplierId ?: 0, productId = route.id)) },
-                        onSell = { nav.navigate(NewSaleRoute(productId = route.id)) },
-                    )
-                }
-                composable<EditProductRoute> {
-                    EditProductScreen(
-                        onClose = { nav.popBackStack() },
-                        onSaved = { id, isNew ->
-                            if (isNew) {
-                                nav.navigate(ProductRoute(id)) { popUpTo<EditProductRoute> { inclusive = true } }
-                            } else {
-                                nav.popBackStack()
-                            }
-                        },
-                    )
-                }
-                composable<NewSaleRoute> {
-                    NewSaleScreen(
-                        onClose = { nav.popBackStack() },
-                        onSold = { saleId ->
-                            nav.navigate(ReceiptRoute(saleId, justSold = true)) { popUpTo<NewSaleRoute> { inclusive = true } }
-                        },
-                    )
-                }
-                composable<ReceiptRoute> {
-                    val route = it.toRoute<ReceiptRoute>()
-                    ReceiptScreen(
-                        saleId = route.saleId,
-                        justSold = route.justSold,
-                        onBack = { nav.popBackStack() },
-                        onNewSale = {
-                            nav.navigate(NewSaleRoute()) { popUpTo<ReceiptRoute> { inclusive = true } }
-                        },
-                        onRestock = { productId -> nav.navigate(RestockRoute(productId = productId)) },
-                    )
-                }
-                composable<RestockRoute> {
-                    RestockScreen(
-                        onBack = { nav.popBackStack() },
-                        onReceived = { restockId ->
-                            nav.navigate(DeliveryRoute(restockId)) { popUpTo<RestockRoute> { inclusive = true } }
-                        },
-                    )
-                }
-                composable<DeliveryRoute> {
-                    DeliveryScreen(restockId = it.toRoute<DeliveryRoute>().restockId, onBack = { nav.popBackStack() })
-                }
-                composable<SettingsRoute> {
-                    SettingsScreen(settings = settings, onBack = { nav.popBackStack() })
+    CompositionLocalProvider(LocalSnackbar provides snackbar, LocalBarcodeScanner provides scanner) {
+        // The scanner draws over every screen, bottom bar included, while one of them waits for a barcode.
+        Box(Modifier.fillMaxSize()) {
+            Scaffold(
+                containerColor = Crate.colors.background,
+                contentWindowInsets = WindowInsets(0, 0, 0, 0),
+                snackbarHost = {
+                    SnackbarHost(snackbar, modifier = if (tab == null) Modifier.navigationBarsPadding() else Modifier) {
+                        Snackbar(
+                            it,
+                            shape = RoundedCornerShape(16.dp),
+                            containerColor = Crate.colors.ink,
+                            contentColor = Crate.colors.background,
+                            actionColor = Crate.colors.heroLine,
+                        )
+                    }
+                },
+                bottomBar = {
+                    if (tab != null) {
+                        CrateBottomBar(
+                            current = tab,
+                            onSelect = { nav.navigateToTab(it) },
+                            onSell = { nav.navigate(NewSaleRoute()) },
+                        )
+                    }
+                },
+            ) { padding ->
+                NavHost(
+                    navController = nav,
+                    startDestination = HomeRoute,
+                    modifier = Modifier
+                        .padding(padding)
+                        .consumeWindowInsets(padding),
+                    enterTransition = { enter() },
+                    exitTransition = { fadeOut(tween(140)) },
+                    popEnterTransition = { fadeIn(tween(200)) },
+                    popExitTransition = { popExit() },
+                ) {
+                    composable<HomeRoute> {
+                        HomeScreen(
+                            settings = settings,
+                            onOpenProduct = { nav.navigate(ProductRoute(it)) },
+                            onAddProduct = { nav.navigate(EditProductRoute()) },
+                            onNewSale = { nav.navigate(NewSaleRoute()) },
+                            onRestock = { nav.navigate(RestockRoute()) },
+                            onStockCount = { nav.navigateToTab(Tab.INVENTORY) },
+                            onInsights = { nav.navigateToTab(Tab.INSIGHTS) },
+                            onSettings = { nav.navigate(SettingsRoute) },
+                            onScanned = { productId, barcode ->
+                                if (productId != null) nav.navigate(ProductRoute(productId))
+                                else nav.navigate(EditProductRoute(barcode = barcode))
+                            },
+                        )
+                    }
+                    composable<InventoryRoute> {
+                        InventoryScreen(
+                            onOpenProduct = { nav.navigate(ProductRoute(it)) },
+                            onAddProduct = { barcode -> nav.navigate(EditProductRoute(barcode = barcode)) },
+                        )
+                    }
+                    composable<ActivityRoute> {
+                        ActivityScreen(
+                            onOpenSale = { nav.navigate(ReceiptRoute(it)) },
+                            onOpenDelivery = { nav.navigate(DeliveryRoute(it)) },
+                        )
+                    }
+                    composable<InsightsRoute> {
+                        InsightsScreen(onOpenProduct = { nav.navigate(ProductRoute(it)) })
+                    }
+                    composable<ProductRoute> {
+                        val route = it.toRoute<ProductRoute>()
+                        ProductScreen(
+                            productId = route.id,
+                            onBack = { nav.popBackStack() },
+                            onEdit = { nav.navigate(EditProductRoute(id = route.id)) },
+                            onRestock = { supplierId -> nav.navigate(RestockRoute(supplierId = supplierId ?: 0, productId = route.id)) },
+                            onSell = { nav.navigate(NewSaleRoute(productId = route.id)) },
+                        )
+                    }
+                    composable<EditProductRoute> {
+                        EditProductScreen(
+                            onClose = { nav.popBackStack() },
+                            onSaved = { id, isNew ->
+                                if (isNew) {
+                                    nav.navigate(ProductRoute(id)) { popUpTo<EditProductRoute> { inclusive = true } }
+                                } else {
+                                    nav.popBackStack()
+                                }
+                            },
+                        )
+                    }
+                    composable<NewSaleRoute> {
+                        NewSaleScreen(
+                            onClose = { nav.popBackStack() },
+                            onSold = { saleId ->
+                                nav.navigate(ReceiptRoute(saleId, justSold = true)) { popUpTo<NewSaleRoute> { inclusive = true } }
+                            },
+                        )
+                    }
+                    composable<ReceiptRoute> {
+                        val route = it.toRoute<ReceiptRoute>()
+                        ReceiptScreen(
+                            saleId = route.saleId,
+                            justSold = route.justSold,
+                            onBack = { nav.popBackStack() },
+                            onNewSale = {
+                                nav.navigate(NewSaleRoute()) { popUpTo<ReceiptRoute> { inclusive = true } }
+                            },
+                            onRestock = { productId -> nav.navigate(RestockRoute(productId = productId)) },
+                        )
+                    }
+                    composable<RestockRoute> {
+                        RestockScreen(
+                            onBack = { nav.popBackStack() },
+                            onReceived = { restockId ->
+                                nav.navigate(DeliveryRoute(restockId)) { popUpTo<RestockRoute> { inclusive = true } }
+                            },
+                        )
+                    }
+                    composable<DeliveryRoute> {
+                        DeliveryScreen(restockId = it.toRoute<DeliveryRoute>().restockId, onBack = { nav.popBackStack() })
+                    }
+                    composable<SettingsRoute> {
+                        SettingsScreen(settings = settings, onBack = { nav.popBackStack() })
+                    }
                 }
             }
+            BarcodeScannerHost(scanner)
         }
     }
 }

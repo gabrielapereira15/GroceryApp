@@ -13,7 +13,8 @@ datastore = "1.2.1"
 coroutines = "1.11.0"
 serialization = "1.11.0"
 biometric = "1.1.0"
-codeScanner = "16.1.0"
+camerax = "1.6.2"
+mlkitBarcode = "17.3.0"
 coil = "3.6.3"
 splashscreen = "1.2.0"
 junit = "4.13.2"
@@ -39,7 +40,11 @@ androidx-datastore-preferences = { group = "androidx.datastore", name = "datasto
 androidx-biometric = { group = "androidx.biometric", name = "biometric", version.ref = "biometric" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
-play-services-code-scanner = { group = "com.google.android.gms", name = "play-services-code-scanner", version.ref = "codeScanner" }
+androidx-camera-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "camerax" }
+androidx-camera-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "camerax" }
+androidx-camera-view = { group = "androidx.camera", name = "camera-view", version.ref = "camerax" }
+androidx-camera-mlkit-vision = { group = "androidx.camera", name = "camera-mlkit-vision", version.ref = "camerax" }
+mlkit-barcode-scanning = { group = "com.google.mlkit", name = "barcode-scanning", version.ref = "mlkitBarcode" }
 coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 

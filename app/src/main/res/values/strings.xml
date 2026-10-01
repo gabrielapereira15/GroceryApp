@@ -47,7 +47,14 @@
     <string name="tax_hst">HST</string>
 
     <!-- Scanner -->
-    <string name="scanner_unavailable">The scanner isn\'t available on this phone.</string>
+    <string name="scanner_title">Scan a barcode</string>
+    <string name="scanner_hint">Hold the barcode inside the frame</string>
+    <string name="scanner_close">Close the scanner</string>
+    <string name="scanner_light_on">Turn the light on</string>
+    <string name="scanner_light_off">Turn the light off</string>
+    <string name="scanner_permission">Crate needs the camera to scan barcodes. You can type them in instead.</string>
+    <string name="scanner_settings">Settings</string>
+    <string name="scanner_unavailable">This phone has no camera to scan with.</string>
     <string name="scan_not_found">No product has the barcode %1$s.</string>
 
     <!-- Time words -->

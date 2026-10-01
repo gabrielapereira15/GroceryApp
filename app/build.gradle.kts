@@ -17,8 +17,8 @@ android {
         applicationId = "com.example.gpgrocery"
         minSdk = 29
         targetSdk = 37
-        versionCode = 3
-        versionName = "2.1"
+        versionCode = 4
+        versionName = "2.2"
     }
 
     buildTypes {
@@ -76,7 +76,11 @@ dependencies {
 
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.biometric)
-    implementation(libs.play.services.code.scanner)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
+    implementation(libs.androidx.camera.mlkit.vision)
+    implementation(libs.mlkit.barcode.scanning)
     implementation(libs.coil.compose)
 
     testImplementation(libs.junit)
