@@ -32,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
@@ -55,14 +56,17 @@ fun SearchField(
     trailing: @Composable (() -> Unit)? = null,
 ) {
     val colors = Crate.colors
+    val focusManager = LocalFocusManager.current
     BasicTextField(
         value = query,
         onValueChange = onQueryChange,
         singleLine = true,
         textStyle = MaterialTheme.typography.bodyLarge.copy(color = colors.ink),
         cursorBrush = SolidColor(colors.primary),
-        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-        keyboardActions = KeyboardActions(onSearch = {}),
+        // Product names and brands are not dictionary words, so no autocorrect. Search puts the keyboard
+        // away to show what was found.
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search, autoCorrectEnabled = false),
+        keyboardActions = KeyboardActions(onSearch = { focusManager.clearFocus() }),
         modifier = modifier
             .fillMaxWidth()
             .semantics { contentDescription = placeholder },
@@ -110,6 +114,7 @@ fun LabeledField(
     supporting: String? = null,
     readOnly: Boolean = false,
     trailing: @Composable (() -> Unit)? = null,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
     singleLine: Boolean = true,
 ) {
     val colors = Crate.colors
@@ -130,6 +135,7 @@ fun LabeledField(
             isError = error != null,
             supportingText = (error ?: supporting)?.let { { Text(it) } },
             keyboardOptions = KeyboardOptions(keyboardType = keyboardType, imeAction = imeAction),
+            keyboardActions = keyboardActions,
             shape = RoundedCornerShape(14.dp),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = colors.surface,

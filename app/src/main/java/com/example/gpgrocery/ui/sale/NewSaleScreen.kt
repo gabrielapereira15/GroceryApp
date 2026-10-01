@@ -27,6 +27,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -305,6 +306,7 @@ private fun CartPanel(
     onCharge: () -> Unit,
 ) {
     val colors = Crate.colors
+    val focusManager = LocalFocusManager.current
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -346,7 +348,8 @@ private fun CartPanel(
             if (state.lines.isEmpty()) {
                 Text(stringResource(R.string.sale_empty_hint), style = MaterialTheme.typography.bodyMedium, color = colors.inkMuted)
             } else {
-                LazyColumn(Modifier.heightIn(max = 204.dp)) {
+                // The list gives up its room first, so the payment and Charge stay on screen above a keyboard.
+                LazyColumn(Modifier.weight(1f, fill = false).heightIn(max = 204.dp)) {
                     items(state.lines, key = { it.productId }) { line ->
                         CartRow(line, { onIncrease(line.productId) }, { onDecrease(line.productId) }, { onRemove(line.productId) })
                     }
@@ -366,6 +369,8 @@ private fun CartPanel(
                         prefix = "$",
                         keyboardType = KeyboardType.Decimal,
                         imeAction = ImeAction.Done,
+                        // The keyboard's done key puts it away, and Charge is right there.
+                        keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
                         supporting = state.change?.let { stringResource(R.string.sale_change_due, Money.format(it)) }
                             ?: state.cashGivenCents?.let { stringResource(R.string.sale_cash_short, Money.format(state.totals.totalCents - it)) },
                     )
