@@ -5,11 +5,14 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
+        <!-- Crate draws its own light and dark themes; phones that darken apps themselves (MIUI) must leave it be. -->
+        <item name="android:forceDarkAllowed">false</item>
     </style>
 
     <style name="Theme.Crate.Splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/basil</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
         <item name="postSplashScreenTheme">@style/Theme.Crate</item>
+        <item name="android:forceDarkAllowed">false</item>
     </style>
 </resources>
